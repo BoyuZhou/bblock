@@ -1,0 +1,27 @@
+#!/usr/bin/env node
+var program = require("commander");
+
+program.version('0.0.1');
+
+program
+    .command('help')
+    .description('显示使用帮助')
+    .action(function () {
+        program.outputHelp();
+    });
+
+program
+    .command('create [dir] [type]')
+    .description('创建一个新项目')
+    .action(require('../lib/cmd_create));
+
+program
+    .command('build [dir]')
+    .description('打包文件')
+    .option('-o, --output <dir>', '生成存放目录')
+    .action(function (dir, options) {
+        console.log('create %s output %s', dir, options)
+    });
+
+program.parse(process.argv);
+
