@@ -11,17 +11,12 @@ program
     });
 
 program
-    .command('create [dir] [type]')
+    .command('create [name] [type]')
     .description('创建一个新项目')
-    .action(require('../lib/cmd_create));
+    .option('-o, --output <name>', '生成存放目录')
+    .action(require('../lib/cmd_create'));
 
-program
-    .command('build [dir]')
-    .description('打包文件')
-    .option('-o, --output <dir>', '生成存放目录')
-    .action(function (dir, options) {
-        console.log('create %s output %s', dir, options)
-    });
+
 
 program.parse(process.argv);
 
